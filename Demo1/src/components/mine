@@ -1,0 +1,62 @@
+import React from "react";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+export const Gallery = (props) => {
+  console.log(props.data);
+  const { clients } = props.data;
+  console.log(clients);
+  return (
+    <div>
+      <h1 style={{ textAlign: "center" }}>Our Clients</h1>
+
+      <div
+        id="portfolio"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={1}
+          navigation
+          centeredSlides={true}
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+        >
+          {clients.map((photo) => (
+            <SwiperSlide
+              key={photo.id}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src={`http://192.168.0.106:8001${photo.image}`}
+                alt={photo.id}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                }}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+  );
+};
